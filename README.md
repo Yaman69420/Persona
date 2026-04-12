@@ -1,44 +1,42 @@
-# Persona 3 Website Project
+# Persona 3 Website (Laravel Version)
 
-A stylish Persona 3 inspired website built with **Laravel 11**, **React**, and **Tailwind CSS**.
+This is a Laravel-ified version of the Persona 3 website. 
 
-## 🚀 Getting Started
+### Credits
+Original project and all files/videos by **[blairxu13](https://github.com/blairxu13/persona3-website)**. I just ported it to Laravel!
 
-### 1. Installation
-First, clone the project and install the dependencies:
+---
+
+# QUICK INSTALLLL
+
+## 1. Get the files
+Clone this and run these:
 ```bash
 composer install
 npm install
 ```
 
-### 2. Environment Setup
-Create your environment file and generate the application key:
+## 2. Setup things
 ```bash
 cp .env.example .env
 php artisan key:generate
-```
-
-### 3. Database
-This project uses SQLite by default. Run the migrations to set up the database:
-```bash
 php artisan migrate
 ```
 
-### 4. Assets (Crucial)
-GitHub has a file size limit, so the background videos are not included in this repository.
-1. Download the videos from this [Google Drive Link](https://drive.google.com/drive/folders/1_dVxHVTJO_YtMAo9ia7wnja1XY0nImr5?usp=sharing).
-2. Place the video files into the `resources/js/assets/` directory.
+## 3. GET THE VIDEOS!!!
+The videos are too big for github lol. 
+Download them from here: [Google Drive Link](https://drive.google.com/drive/folders/1_dVxHVTJO_YtMAo9ia7wnja1XY0nImr5?usp=sharing)
+And drag them to: `resources/js/assets/`
 
-### 5. Running the Project
-To run the server and the frontend compiler simultaneously:
+## 4. Run it
+Run this to start everything:
 ```bash
 composer run dev
 ```
-Alternatively, you can run them in separate terminals:
-- **Backend**: `php artisan serve`
-- **Frontend**: `npm run dev`
+boom you are done!
 
 ---
-## ✨ Follow Me
-Drop a follow on my Instagram: **[moneybagg.py](https://www.instagram.com/moneybagg.py)**
-Follow me here on GitHub for more cool content! 🚀
+
+### DROP A FOLLOWWWWW
+Go follow the original creator on IG: **[moneybagg.py](https://www.instagram.com/moneybagg.py)** 
+Check out their github for more funny cool content.

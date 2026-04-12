@@ -2,22 +2,36 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ITEMS = [
-  { id: "i", badge: "I", title: "EDUCATION", subtitle: "University / Coursework", rank: 3 },
-  { id: "ii", badge: "II", title: "SKILLS", subtitle: "Frontend / Design / UI", rank: 4 },
-  { id: "iii", badge: "III", title: "PROJECTS", subtitle: "Featured Work", rank: 5 },
-  { id: "iv", badge: "IV", title: "EXPERIENCE", subtitle: "Internships / Roles", rank: 2 },
+  { id: "i", badge: "I", title: "EDUCATION", subtitle: "Syntra West / Full Stack", rank: 3 },
+  { id: "ii", badge: "II", title: "SKILLS", subtitle: "Laravel / Livewire / Web", rank: 5 },
+  { id: "iii", badge: "III", title: "PROJECTS", subtitle: "GitHub Repositories", rank: 4 },
+  { id: "iv", badge: "IV", title: "EXPERIENCE", subtitle: "Hospitality & Service", rank: 4 },
 ];
 
 const EDUCATION_ROWS = [
-  { index: "01", title: "General Education", status: "Complete" },
-  { index: "02", title: "Computer Science Core", status: "In Progress" },
-  { index: "03", title: "Elective Track", status: "Queued" },
-  { index: "04", title: "Capstone Prep", status: "Pending" },
+  { index: "01", title: "Full Stack Development", status: "In Progress" },
+  { index: "02", title: "Syntra West Roeselaere", status: "Active" },
+  { index: "03", title: "Laravel Specialization", status: "Mastery" },
+  { index: "04", title: "Livewire Integration", status: "Current" },
+];
+
+const SKILLS_ROWS = [
+  { index: "01", title: "PHP / Laravel / Livewire", status: "Expert" },
+  { index: "02", title: "JS / Nuxt / Vue / Bootstrap", status: "Advanced" },
+  { index: "03", title: "SQL / Database Design", status: "Solid" },
+  { index: "04", title: "Security / CMS", status: "Focus" },
+];
+
+const EXPERIENCE_ROWS = [
+  { index: "01", title: "Restaurant Staff", status: "4 Years" },
+  { index: "02", title: "Bartender", status: "Service" },
+  { index: "03", title: "Client Service", status: "Pro" },
+  { index: "04", title: "Team Management", status: "Core" },
 ];
 
 export default function ResumePage({ src }) {
   const navigate = useNavigate();
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -36,6 +50,81 @@ export default function ResumePage({ src }) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [navigate]);
+
+  const renderDetailPanel = () => {
+    let title = "";
+    let rows = [];
+    let bullets = [];
+    let progress = "0/0";
+
+    if (active === 0) {
+      title = "EDUCATION LOG";
+      rows = EDUCATION_ROWS;
+      progress = "7/5";
+      bullets = [
+        "- Studying Full Stack Development at Syntra West, Roeselaere.",
+        "- Specialized in the Laravel ecosystem and Livewire.",
+        "- Building modern, reactive web applications with PHP.",
+      ];
+    } else if (active === 1) {
+      title = "SKILL PARAMETERS";
+      rows = SKILLS_ROWS;
+      progress = "MAX";
+      bullets = [
+        "- Deep understanding of PHP, Laravel, and Livewire.",
+        "- Frontend expertise in Vue, Nuxt, and Bootstrap.",
+        "- Database architecture and security best practices.",
+      ];
+    } else if (active === 2) {
+      title = "PROJECT DATA";
+      progress = "LINKED";
+      bullets = [
+        "- Explore my work on GitHub: github.com/Yaman69420",
+        "- Check out my recent Laravel and Livewire implementations.",
+        "- Specialized in building complete, scalable web systems.",
+      ];
+    } else if (active === 3) {
+      title = "EXPERIENCE HISTORY";
+      rows = EXPERIENCE_ROWS;
+      progress = "VETERAN";
+      bullets = [
+        "- 4 years of experience in the high-pressure restaurant industry.",
+        "- Skilled bartender with a focus on exceptional client service.",
+        "- Strong communication and interpersonal skills from frontline roles.",
+      ];
+    }
+
+    return (
+      <div className="resume-detail-panel">
+        <div className="resume-detail-top">
+          <div className="resume-detail-top-index">0{active + 1}</div>
+          <div className="resume-detail-top-title">{title}</div>
+          <div className="resume-detail-top-progress">{progress}</div>
+        </div>
+
+        {rows.length > 0 && (
+          <div className="resume-detail-list">
+            {rows.map((row) => (
+              <div className="resume-detail-row" key={row.index}>
+                <div className="resume-detail-row-index">{row.index}</div>
+                <div className="resume-detail-row-title">{row.title}</div>
+                <div className="resume-detail-status">{row.status}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="resume-detail-bottom">
+          <div className="resume-detail-bottom-title">DETAILS</div>
+          <div className="resume-detail-bullets">
+            {bullets.map((b, i) => (
+              <div className="resume-detail-bullet" key={i}>{b}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div id="menu-screen">
@@ -404,34 +493,7 @@ export default function ResumePage({ src }) {
           ))}
         </div>
 
-        {active === 0 && (
-          <div className="resume-detail-panel">
-            <div className="resume-detail-top">
-              <div className="resume-detail-top-index">01</div>
-              <div className="resume-detail-top-title">EDUCATION LOG</div>
-              <div className="resume-detail-top-progress">7/5</div>
-            </div>
-
-            <div className="resume-detail-list">
-              {EDUCATION_ROWS.map((row) => (
-                <div className="resume-detail-row" key={row.index}>
-                  <div className="resume-detail-row-index">{row.index}</div>
-                  <div className="resume-detail-row-title">{row.title}</div>
-                  <div className="resume-detail-status">{row.status}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="resume-detail-bottom">
-              <div className="resume-detail-bottom-title">DETAILS</div>
-              <div className="resume-detail-bullets">
-                <div className="resume-detail-bullet">- Maintain progress across required classes and supporting work.</div>
-                <div className="resume-detail-bullet">- Track portfolio-ready projects tied to coursework and labs.</div>
-                <div className="resume-detail-bullet">- Keep materials prepared for internships, research, and review.</div>
-              </div>
-            </div>
-          </div>
-        )}
+        {renderDetailPanel()}
 
       </div>
     </div>

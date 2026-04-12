@@ -14,26 +14,39 @@ import mainf from "./assets/mainf.jpeg";
 const CHARS = [char1, char2, char3];
 const MAIN_IMAGES = [mainm, mainm2, mainf];
 
+const calculateAge = (birthDate) => {
+  const today = new Date();
+  const birth = new Date(birthDate);
+  let age = today.getFullYear() - birth.getFullYear();
+  const m = today.getMonth() - birth.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+    age--;
+  }
+  return age;
+};
+
+const YAMAN_AGE = calculateAge("2001-01-20");
+
 const REVEAL_CONTENT = [
   {
-    upper: ["name moneybagg", "age:23"],
-    lower: "major: computer science",
+    upper: ["NAME: YAMAN TERKAWI", `AGE: ${YAMAN_AGE}`],
+    lower: "MAJOR: FULL STACK DEVELOPMENT (COMPUTER SCIENCE)",
   },
   {
     upper: [
-      "Cleopatra lived closer to the Moon landing than to the building of the pyramids.",
-      "Vikings kept cats on ships for pest control (and vibes).",
-      "In medieval Europe, animals could be put on trial for crimes",
+      "I haven't added my fun facts yet.",
+      "Check back soon!",
+      "Or ask me in person.",
     ],
-    lower: "abbove is some history fun fact",
+    lower: "FUN FACTS COMING SOON",
   },
   {
     upper: [
-      "Oxford University founding is older than the Aztec Empire.",
-      "The shortest war in history lasted 38–45 minutes (Britain vs Zanzibar).",
-      "Humans have been writing for ~5,000 years",
+      "I haven't added my weird facts yet.",
+      "The velvet room is still being prepared.",
+      "Stay tuned for updates.",
     ],
-    lower: "yes it's a place holder",
+    lower: "WEIRD FACTS COMING SOON",
   },
 ];
 

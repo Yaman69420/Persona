@@ -17,7 +17,13 @@ function MenuScreen() {
   return (
     <div id="menu-screen">
       <video src={menuVideo} autoPlay loop muted playsInline />
-      <P3Menu onNavigate={(page) => navigate(`/${page}`)} />
+      <P3Menu onNavigate={(page) => {
+        if (page === "github") {
+          window.open("https://github.com/Yaman69420", "_blank");
+        } else {
+          navigate(`/${page}`);
+        }
+      }} />
     </div>
   )
 }

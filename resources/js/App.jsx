@@ -1,10 +1,7 @@
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { useState, useRef, useEffect } from 'react'
-import menuVideo from './assets/Mainn.mp4'
-import main1 from './assets/main1.mp4'
-import main2 from './assets/main2.mp4'
-import main3 from './assets/main3.mp4'
+import { getVideoUrl } from './videoUtils'
 import P3Menu from './P3Menu'
 import VideoPage from './VideoPage'
 import ResumePage from './ResumePage'
@@ -130,7 +127,7 @@ function MenuScreen() {
   const navigate = useNavigate()
   return (
     <div id="menu-screen">
-      <video src={menuVideo} autoPlay loop muted playsInline />
+      <video src={getVideoUrl('Mainn.mp4')} autoPlay loop muted playsInline />
       <P3Menu onNavigate={(page) => {
         if (page === "github") {
           window.open("https://github.com/Yaman69420", "_blank");
@@ -154,7 +151,7 @@ function AnimatedRoutes() {
           <PageTransition variant="about"><AboutMe /></PageTransition>
         } />
         <Route path="/resume" element={
-          <PageTransition><ResumePage src={main2} /></PageTransition>
+          <PageTransition><ResumePage src={getVideoUrl('main2.mp4')} /></PageTransition>
         } />
         <Route path="/socials" element={
           <PageTransition variant="socials"><Socials /></PageTransition>

@@ -127,7 +127,7 @@ function MenuScreen() {
   const navigate = useNavigate()
   return (
     <div id="menu-screen">
-      <video src={getVideoUrl('Mainn.mp4')} autoPlay loop muted playsInline />
+      <video src={getVideoUrl('main1.mp3')} autoPlay loop muted playsInline />
       <P3Menu onNavigate={(page) => {
         if (page === "github") {
           window.open("https://github.com/Yaman69420", "_blank");
@@ -151,7 +151,7 @@ function AnimatedRoutes() {
           <PageTransition variant="about"><AboutMe /></PageTransition>
         } />
         <Route path="/resume" element={
-          <PageTransition><ResumePage src={getVideoUrl('main2.mp4')} /></PageTransition>
+          <PageTransition><ResumePage src={getVideoUrl('main2.mp3')} /></PageTransition>
         } />
         <Route path="/socials" element={
           <PageTransition variant="socials"><Socials /></PageTransition>

@@ -12,6 +12,11 @@
  * @returns {string} Full URL to the video file
  */
 export function getVideoUrl(filename) {
+  // Use local fallback for development
+  if (import.meta.env.DEV) {
+    return `/videos/${filename}`;
+  }
+
   const bucket = import.meta.env.VITE_BUCKET_NAME;
   return `https://${bucket}.t3.tigrisbucket.io/videos/${filename}`;
 }

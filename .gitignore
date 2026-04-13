@@ -18,3 +18,4 @@ yarn-error.log
 /.vscode
 .DS_Store
 resources/js/assets/*.mp4
+/public/videos/*.mp4

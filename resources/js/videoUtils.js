@@ -12,7 +12,6 @@
  * @returns {string} Full URL to the video file
  */
 export function getVideoUrl(filename) {
-  const endpoint = import.meta.env.VITE_BUCKET_ENDPOINT;
   const bucket = import.meta.env.VITE_BUCKET_NAME;
-  return `https://${endpoint}/${bucket}/videos/${filename}`;
+  return `https://${bucket}.t3.tigrisbucket.io/videos/${filename}`;
 }

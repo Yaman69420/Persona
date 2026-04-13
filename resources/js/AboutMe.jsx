@@ -244,7 +244,7 @@ export default function AboutMe() {
           left: -6vw;
           width: 88vw;
           height: 60vh;
-          z-index: 12;
+          z-index: 15;
           pointer-events: none;
           background:
             linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(243,246,252,0.98) 100%);

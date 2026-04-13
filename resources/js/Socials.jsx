@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
+// Icons & Base Assets
 import char1 from "./assets/char1.png";
 import char2 from "./assets/char2.png";
 import char3 from "./assets/char3.png";
@@ -9,46 +11,114 @@ import icon1 from "./assets/icon1.png";
 import icon2 from "./assets/icon2.png";
 import icon3 from "./assets/icon3.png";
 
-const CHARS = [char1, char2, char3];
+// Movie Posters
+import movie1 from "./assets/movie1.jpg";
+import movie2 from "./assets/movie2.jpg";
+import movie3 from "./assets/movie3.jpg";
+import movie4 from "./assets/movie4.jpg";
+
+// Game Covers
+import game1 from "./assets/game1.jpg";
+import game2 from "./assets/game2.jpg";
+import game3 from "./assets/game3.jpg";
+import game4 from "./assets/game4.jpg";
+import game5 from "./assets/game5.jpg";
+
+// Anime Posters
+import anime1 from "./assets/anime1.jpg";
+import anime2 from "./assets/anime2.jpg";
+import anime3 from "./assets/anime3.jpg";
+import anime4 from "./assets/anime4.jpg";
+import anime5 from "./assets/anime5.jpg";
+
+// Manga Posters
+import manga1 from "./assets/manga1.jpg";
+import manga2 from "./assets/manga2.jpg";
+import manga3 from "./assets/manga3.jpg";
+
+const CHARS = [char1, char2, char3, char1, char2];
 
 const ROLES = [
   { text: "LEADER", color: "#e8c100", bg: "rgba(232,193,0,0.12)", border: "rgba(232,193,0,0.5)" },
+  { text: "PARTY",  color: "#4a8fff", bg: "rgba(74,143,255,0.12)", border: "rgba(74,143,255,0.5)" },
+  { text: "PARTY",  color: "#4a8fff", bg: "rgba(74,143,255,0.12)", border: "rgba(74,143,255,0.5)" },
   { text: "PARTY",  color: "#4a8fff", bg: "rgba(74,143,255,0.12)", border: "rgba(74,143,255,0.5)" },
   { text: "PARTY",  color: "#4a8fff", bg: "rgba(74,143,255,0.12)", border: "rgba(74,143,255,0.5)" },
 ];
 
 const ITEMS = [
   {
-    id: "twitch", label: "TWITCH", handle: "@yourname", href: "https://twitch.tv/yourname", icon: "🎮", barIcon: icon1, bars: 1, newBars: [0], counts: ["56"],
-    links: ["twitch.tv/videos/2041837265"],
-    stats: [
-      { tag: "FOL", value: "1.2K", color: "#9147ff" },
-      { tag: "VWR", value: "042",  color: "#bf94ff" },
-    ],
+    id: "instagram", label: "INSTAGRAM", handle: "@yaman.terkawi", href: "https://instagram.com/yaman.terkawi", icon: "📷", barIcon: icon1, bars: 0,
+    type: "simple", stats: []
   },
   {
-    id: "instagram", label: "INSTAGRAM", handle: "@yourhandle", href: "https://instagram.com/yourhandle", icon: "📷", barIcon: icon2, bars: 5, newBars: [1, 2], counts: ["3.4M", "2.5M", "676K", "412K", "198K"],
-    links: ["instagram.com/p/C4xQmRrNk2a", "instagram.com/p/C3wLpBsOj7f", "instagram.com/reel/C2vKoArMi6e", "instagram.com/p/C1uJnZqLh5d", "instagram.com/reel/C0tImYpKg4c"],
-    stats: [
-      { tag: "FOL", value: "3.4K", color: "#e1306c" },
-      { tag: "PST", value: "128",  color: "#f77737" },
-    ],
+    id: "spotify", label: "SPOTIFY", handle: "Yaman", href: "https://open.spotify.com/user/31gizpqn4qk25nn7rqfqv4xltoxy?si=LY8xRHWHR4CrFZUvEYwaDQ", icon: "🎵", barIcon: icon2, bars: 3,
+    type: "spotify", playlists: ["4apFx8yLAFF01wttZhXGek", "6O86pIZt3zV5yBn1HLdVK2", "1JtKo7eJyTMpk4yEJ7PFGK"],
+    stats: [{ tag: "PLST", value: "3", color: "#1db954" }, { tag: "LKS", value: "342", color: "#1ed760" }]
   },
   {
-    id: "tiktok", label: "TIKTOK", handle: "@yourhandle", href: "https://tiktok.com/@yourhandle", icon: "🎵", barIcon: icon3, bars: 7, newBars: [0, 3, 5, 6], counts: ["5.1M", "3.7M", "2.2M", "1.4M", "831K", "490K", "217K"],
-    links: ["tiktok.com/@yourhandle/video/7318492016374859054", "tiktok.com/@yourhandle/video/7305837261940183342", "tiktok.com/@yourhandle/video/7291046385720348974", "tiktok.com/@yourhandle/video/7278392047163820334", "tiktok.com/@yourhandle/video/7264819203847165742", "tiktok.com/@yourhandle/video/7251047382916430126", "tiktok.com/@yourhandle/video/7237294018463851822"],
-    stats: [
-      { tag: "FOL", value: "8.9K", color: "#00f2ea" },
-      { tag: "LKS", value: "52K",  color: "#ff0050" },
+    id: "anilist", label: "ANILIST", handle: "Yabum21", href: "https://anilist.co/user/Yabum21", icon: "🏮", barIcon: icon3, bars: 1,
+    type: "anilist", 
+    topAnime: [
+      { title: "Re:Zero", img: anime1 },
+      { title: "Kaguya-sama", img: anime2 },
+      { title: "Attack on Titan", img: anime3 },
+      { title: "Neon Genesis", img: anime4 },
+      { title: "Death Parade", img: anime5 },
     ],
+    topManga: [
+      { title: "Berserk", img: manga1 },
+      { title: "Vagabond", img: manga2 },
+      { title: "Steel Ball Run", img: manga3 },
+    ],
+    stats: [{ tag: "COMP", value: "60+", color: "#3db4f2" }, { tag: "MEAN", value: "80%", color: "#f0b64d" }]
+  },
+  {
+    id: "letterboxd", label: "LETTERBOXD", handle: "Yabum21", href: "https://letterboxd.com/Yabum21", icon: "🎬", barIcon: icon1, bars: 1,
+    type: "letterboxd", 
+    favorites: [
+      { title: "Scott Pilgrim vs. The World", img: movie1 },
+      { title: "LOTR: The Return of the King", img: movie2 },
+      { title: "Blade Runner 2049", img: movie3 },
+      { title: "12 Angry Men", img: movie4 },
+    ],
+    stats: [{ tag: "FILM", value: "770+", color: "#ff8000" }, { tag: "FAV", value: "4", color: "#00e054" }]
+  },
+  {
+    id: "backloggd", label: "BACKLOGGD", handle: "Yabum21", href: "https://backloggd.com/u/Yabum21", icon: "🎮", barIcon: icon2, bars: 1,
+    type: "backloggd",
+    favorites: [
+      { title: "Bloodborne", img: game1 },
+      { title: "NieR: Automata", img: game2 },
+      { title: "Silent Hill 2", img: game3 },
+      { title: "Elden Ring", img: game4 },
+      { title: "Clair Obscur: Exp 33", img: game5 },
+    ],
+    stats: [{ tag: "PLAY", value: "400+", color: "#b611ee" }, { tag: "TOP", value: "5", color: "#ffffff" }]
   },
 ];
+
+function ImageWithFade({ src, alt, className }) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div className={`img-fade-wrap ${loaded ? 'loaded' : ''}`}>
+      <img 
+        src={src} 
+        alt={alt} 
+        className={className} 
+        onLoad={() => setLoaded(true)} 
+        style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}
+      />
+      {!loaded && <div className="img-placeholder" />}
+    </div>
+  );
+}
 
 export default function Socials() {
   const [active, setActive]               = useState(0);
   const [mounted, setMounted]             = useState(false);
   const [activeInfoBar, setActiveInfoBar] = useState(0);
-  const [focus, setFocus]                 = useState("left"); // "left" | "right"
+  const [focus, setFocus]                 = useState("left");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,20 +131,117 @@ export default function Socials() {
       if (focus === "left") {
         if (e.key === "ArrowUp")    setActive(i => Math.max(0, i - 1));
         if (e.key === "ArrowDown")  setActive(i => Math.min(ITEMS.length - 1, i + 1));
-        if (e.key === "ArrowRight") { setFocus("right"); setActiveInfoBar(0); }
+        if (e.key === "ArrowRight") { 
+          if (ITEMS[active].type !== "simple") {
+            setFocus("right"); 
+            setActiveInfoBar(0); 
+          }
+        }
         if (e.key === "Enter")      window.open(ITEMS[active].href, "_blank");
       } else {
-        const barCount = ITEMS[active].bars;
+        const barCount = ITEMS[active].type === "spotify" ? 3 : 1;
         if (e.key === "ArrowUp")   setActiveInfoBar(i => Math.max(0, i - 1));
         if (e.key === "ArrowDown") setActiveInfoBar(i => Math.min(barCount - 1, i + 1));
         if (e.key === "ArrowLeft") setFocus("left");
-        if (e.key === "Enter")     window.open("https://" + ITEMS[active].links[activeInfoBar], "_blank");
+        if (e.key === "Enter") {
+          if (ITEMS[active].type === "spotify") {
+            window.open(`https://open.spotify.com/playlist/${ITEMS[active].playlists[activeInfoBar]}`, "_blank");
+          } else {
+            window.open(ITEMS[active].href, "_blank");
+          }
+        }
       }
       if ((e.key === "ArrowLeft" && focus === "left") || e.key === "Escape" || e.key === "Backspace") navigate(-1);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [active, navigate, focus]);
+  }, [active, navigate, focus, activeInfoBar]);
+
+  const renderRightPanel = () => {
+    const item = ITEMS[active];
+    if (!mounted) return null;
+
+    if (item.type === "spotify") {
+      return (
+        <div className="sc-spotify-container">
+          {item.playlists.map((pid, i) => (
+            <div 
+              key={pid} 
+              className={`sc-spotify-wrapper ${activeInfoBar === i ? 'selected' : ''}`}
+              style={{ animationDelay: `${i * 100}ms` }}
+            >
+              <iframe 
+                src={`https://open.spotify.com/embed/playlist/${pid}?utm_source=generator&theme=0`} 
+                width="100%" height="152" frameBorder="0" 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    if (item.type === "anilist") {
+      return (
+        <div className="sc-anilist-panel">
+          <div className="sc-ani-lists">
+            <div className="sc-ani-list-col">
+              <span className="sc-ani-label">TOP 5 ANIME</span>
+              <div className="sc-ani-grid">
+                {item.topAnime.map((ani, i) => (
+                  <div key={i} className="sc-ani-card" style={{ animationDelay: `${i * 50}ms` }}>
+                    <ImageWithFade src={ani.img} alt={ani.title} />
+                    <div className="sc-ani-title-overlay">{ani.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="sc-ani-list-col">
+              <span className="sc-ani-label">TOP 3 MANGA</span>
+              <div className="sc-ani-grid">
+                {item.topManga.map((mng, i) => (
+                  <div key={i} className="sc-ani-card" style={{ animationDelay: `${i * 50}ms` }}>
+                    <ImageWithFade src={mng.img} alt={mng.title} />
+                    <div className="sc-ani-title-overlay">{mng.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="sc-ani-stats">
+            <div className="sc-ani-stat-box">
+              <span className="sc-ani-stat-val">60+</span>
+              <span className="sc-ani-stat-lbl">COMPLETED</span>
+            </div>
+            <div className="sc-ani-stat-box red">
+              <span className="sc-ani-stat-val">80%+</span>
+              <span className="sc-ani-stat-lbl">MEAN SCORE</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if ((item.type === "letterboxd" || item.type === "backloggd") && item.favorites) {
+      return (
+        <div className="sc-fav-panel">
+          <span className="sc-fav-label">{item.type === "letterboxd" ? "FAVORITE FILMS" : "TOP GAMES"}</span>
+          <div className="sc-fav-grid">
+            {item.favorites.map((fav, i) => (
+              <div key={i} className="sc-fav-card" style={{ animationDelay: `${i * 80}ms` }}>
+                <ImageWithFade src={fav.img} alt={fav.title} />
+                <div className="sc-fav-title">{fav.title}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    return null;
+  };
 
   return (
     <div id="menu-screen">
@@ -83,437 +250,117 @@ export default function Socials() {
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,700;1,700&display=swap');
 
         .sc-root {
-          position: absolute;
-          inset: 0;
-          z-index: 10;
-          pointer-events: none;
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: center;
-          gap: 6px;
-          padding-left: 0;
+          position: absolute; inset: 0; z-index: 10;
+          pointer-events: none; display: flex; flex-direction: column;
+          align-items: flex-start; justify-content: center; gap: 6px; padding-left: 0;
         }
 
-        /* ── Each bar ── */
         .sc-bar {
-          position: relative;
-          width: 45vw;
-          height: 64px;
-          transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
-          background: #111;
-          cursor: pointer;
-          pointer-events: all;
+          position: relative; width: 45vw; height: 64px; transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
+          background: #111; cursor: pointer; pointer-events: all;
           clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
-          box-shadow: 0 6px 24px rgba(0,0,0,0.65);
-          z-index: 1;
+          box-shadow: 0 6px 24px rgba(0,0,0,0.65); z-index: 1;
         }
 
-        /* wrapper holds both the red underlay and the bar */
         .sc-bar-outer {
-          position: relative;
-          flex-shrink: 0;
-          transform: translateX(-100%);
+          position: relative; flex-shrink: 0; transform: translateX(-100%);
           transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .sc-bar-outer.active .sc-bar     { height: 90px; }
-        .sc-bar-outer.active .sc-bar-red { height: 90px; }
+        .sc-bar-outer.active .sc-bar { height: 90px; }
         .sc-bar-outer.mounted { transform: translateX(0); }
-        .sc-bar-outer:nth-child(1) { transition-delay: 0ms; }
-        .sc-bar-outer:nth-child(2) { transition-delay: 80ms; }
-        .sc-bar-outer:nth-child(3) { transition-delay: 160ms; }
 
-        /* red underlay — peeks out below the bar when active */
         .sc-bar-red {
-          position: absolute;
-          top: 0; left: 0;
-          width: 45vw;
-          height: 64px;
-          background: #c4001a;
-          clip-path: polygon(50% 0, 100% 0, 100% 100%, calc(50% - 10px) 100%);
-          transform: translateY(-7px);
-          opacity: 0;
-          transition: opacity 0.2s ease;
-          z-index: 0;
-          pointer-events: none;
+          position: absolute; top: 0; left: 0; width: 45vw; height: 64px;
+          background: #c4001a; transform: translateY(-7px); opacity: 0;
+          transition: opacity 0.2s ease; z-index: 0; pointer-events: none;
         }
-        .sc-bar-outer.active .sc-bar-red { opacity: 1; }
+        .sc-bar-outer.active .sc-bar-red { opacity: 1; height: 90px; }
 
-        /* white fill — skewed parallelogram on the right 25% */
         .sc-bar-fill {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          background: #ffffff;
+          position: absolute; inset: 0; width: 100%; background: #ffffff;
           clip-path: polygon(100% 0, 100% 0, calc(100% - 32px) 100%, calc(100% - 32px) 100%);
-          transition: clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-          z-index: 0;
+          transition: clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1); z-index: 0;
         }
         .sc-bar-outer.active .sc-bar-fill {
           clip-path: polygon(22% 0, 100% 0, calc(100% - 14px) 100%, calc(22% + 138px) 100%);
         }
 
-        /* shade on the left edge of the white fill */
-        .sc-bar-shade {
-          position: absolute;
-          top: 0; bottom: 0;
-          left: 73%;
-          width: 6%;
-          background: linear-gradient(90deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 100%);
-          z-index: 1;
-          pointer-events: none;
-          opacity: 0;
-          transition: opacity 0.35s ease;
-        }
-        .sc-bar-outer.active .sc-bar-shade { opacity: 1; }
-
-        /* bottom shadow line under each bar */
-        .sc-bar::after {
-          content: '';
-          position: absolute;
-          bottom: 0; left: 0; right: 0;
-          height: 6px;
-          background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%);
-          z-index: 10;
-          pointer-events: none;
-        }
-
-        /* content layout inside each bar */
         .sc-bar-content {
-          position: relative;
-          z-index: 2;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 20px 0 20px;
+          position: relative; z-index: 2; height: 100%;
+          display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
         }
 
-        /* left: role label */
         .sc-role {
-          display: flex;
-          align-items: center;
-          flex-shrink: 0;
-          font-family: 'Anton', sans-serif;
-          font-size: 50px;
-          letter-spacing: -2px;
-          color: #ffffff;
-          transform: rotate(-30deg);
-          user-select: none;
-          line-height: 1;
-          padding: 0 16px 0 8px;
+          font-family: 'Anton', sans-serif; font-size: 50px; letter-spacing: -2px;
+          color: #ffffff; transform: rotate(-30deg); user-select: none; line-height: 1; padding: 0 16px 0 8px;
         }
 
-        /* left: icon + name centered in remaining space */
-        .sc-main {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 3px;
-        }
-        .sc-main-top {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-
-        .sc-icon {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 22px;
-          width: 32px;
-          text-align: center;
-          flex-shrink: 0;
-          color: rgba(255,255,255,0.15);
-          transition: color 0.2s ease;
-          user-select: none;
-        }
-        .sc-bar-outer.active .sc-icon { color: rgba(255,255,255,0.25); }
-
-        .sc-label {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 28px;
-          letter-spacing: 4px;
-          line-height: 1;
-          color: rgba(255,255,255,0.85);
-          transition: color 0.2s ease;
-          user-select: none;
-        }
+        .sc-main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
+        .sc-label { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 4px; line-height: 1; color: rgba(255,255,255,0.85); transition: color 0.2s ease; user-select: none; }
         .sc-bar-outer.active .sc-label { color: #111111; }
 
-        /* lb/rb nav row */
-        @keyframes sc-arrow-left {
-          0%, 100% { transform: translateX(0); opacity: 1; }
-          50%       { transform: translateX(-5px); opacity: 0.4; }
-        }
-        @keyframes sc-arrow-right {
-          0%, 100% { transform: translateX(0); opacity: 1; }
-          50%       { transform: translateX(5px); opacity: 0.4; }
-        }
-        .sc-nav-btn {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 12px;
-          letter-spacing: 2px;
-          color: #111;
-          border: 1px solid rgba(0,0,0,0.35);
-          padding: 1px 7px;
-          line-height: 1.5;
-          user-select: none;
-        }
-        .sc-nav-arrow {
-          font-size: 12px;
-          color: #c4001a;
-          display: inline-block;
-        }
-        .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
-        .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
-
-        /* right: stats group */
-        .sc-stats {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding-right: 24px;
-          flex-shrink: 0;
-        }
-
-        .sc-stat {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .sc-stat-top {
-          display: flex;
-          align-items: baseline;
-          gap: 4px;
-        }
-
-        .sc-stat-tag {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 9px;
-          letter-spacing: 1.5px;
-          padding: 1px 4px;
-          border-width: 1px;
-          border-style: solid;
-          line-height: 1.4;
-          user-select: none;
-        }
-
-        .sc-stat-num {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 26px;
-          font-style: italic;
-          line-height: 1;
-          color: #ffffff;
-          letter-spacing: 1px;
-          user-select: none;
-          transition: color 0.2s ease;
-        }
+        .sc-stats { display: flex; align-items: center; gap: 10px; padding-right: 24px; flex-shrink: 0; }
+        .sc-stat { display: flex; flex-direction: column; align-items: flex-start; }
+        .sc-stat-tag { font-family: 'Bebas Neue', sans-serif; font-size: 9px; letter-spacing: 1.5px; padding: 1px 4px; border: 1px solid; line-height: 1.4; user-select: none; }
+        .sc-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 26px; font-style: italic; line-height: 1; color: #ffffff; letter-spacing: 1px; user-select: none; }
         .sc-bar-outer.active .sc-stat-num { color: #111111; }
 
-        .sc-stat-bars {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 1px;
-          margin-top: 2px;
-        }
-        .sc-stat-bar-color {
-          height: 3px;
-          width: 100%;
-        }
-        .sc-stat-bar-black {
-          height: 2px;
-          width: 100%;
-          background: #000;
-        }
-
-        /* character portrait */
         .sc-char {
-          position: absolute;
-          top: 0;
-          left: 110px;
-          height: 100%;
-          width: auto;
-          max-width: 160px;
-          object-fit: cover;
-          object-position: top;
-          pointer-events: none;
-          z-index: 3;
+          position: absolute; top: 0; left: 110px; height: 100%; width: auto; max-width: 160px;
+          object-fit: cover; object-position: top; pointer-events: none; z-index: 3;
           clip-path: polygon(20px 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);
         }
 
-        /* right-side nav bar */
-        @keyframes sc-right-nav-pop {
-          0%   { opacity: 0; transform: scale(0.55) translateY(-10px); }
-          65%  { opacity: 1; transform: scale(1.1) translateY(2px); }
-          100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
         .sc-right-nav {
-          position: fixed;
-          top: 40px;
-          right: 40px;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          pointer-events: none;
-          z-index: 50;
+          position: fixed; top: 40px; right: 40px; z-index: 50;
           animation: sc-right-nav-pop 0.38s cubic-bezier(0.22,1,0.36,1) both;
         }
-        .sc-right-nav .sc-nav-btn {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 100px;
-          letter-spacing: 3px;
-          line-height: 1;
-          user-select: none;
-          color: #fff;
-          -webkit-text-stroke: 2px #000;
-          paint-order: stroke fill;
-          background: none;
-          border: none;
-          padding: 0 6px;
-        }
-        .sc-right-nav .sc-nav-label {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 28px;
-          letter-spacing: 3px;
-          line-height: 1;
-          user-select: none;
-          color: #111;
-          padding: 0 8px;
-        }
-        .sc-right-nav .sc-nav-arrow {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 22px;
-          color: #c4001a;
-          display: inline-block;
-          user-select: none;
-        }
-        .sc-right-nav .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
-        .sc-right-nav .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
+        .sc-nav-label { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 3px; color: #111; background: #fff; padding: 2px 12px; }
 
-        /* info bar under nav */
-        @keyframes sc-infobar-in {
-          0%   { opacity: 0; transform: translateX(40px); }
-          60%  { opacity: 1; transform: translateX(-4px); }
-          100% { opacity: 1; transform: translateX(0); }
-        }
-        .sc-info-bar-wrap {
-          position: fixed;
-          right: 0;
-          left: 65%;
-          height: 46px;
-          background: transparent;
-          pointer-events: all;
-          cursor: pointer;
-          z-index: 50;
-          padding: 0;
-          animation: sc-infobar-in 0.35s cubic-bezier(0.22,1,0.36,1) both;
-        }
-        .sc-info-bar-wrap.selected {
-          background: #111;
-          padding: 1.5px;
-          border-radius: 8px;
-        }
-        .sc-info-bar {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          background: transparent;
-          display: flex;
-          align-items: center;
-          overflow: hidden;
-        }
-        .sc-info-bar-wrap.selected .sc-info-bar {
-          background: #fff;
-          border-radius: 7px;
-        }
-        .sc-info-bar-new {
-          position: absolute;
-          left: -40px;
-          bottom: 0;
-          height: 65%;
-          width: auto;
-          pointer-events: none;
-          z-index: 3;
-        }
-        .sc-info-bar-wrap.selected .sc-info-bar::before {
-          content: '';
-          position: absolute;
-          top: 0; left: 0; right: 0;
-          height: 4px;
-          background: #c4001a;
-          z-index: 1;
-        }
-        .sc-info-bar-text {
-          flex: 1;
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 22px;
-          letter-spacing: 2px;
-          color: #111;
-          padding: 0 14px;
-          user-select: none;
-        }
-        .sc-info-bar-box {
-          height: 70%;
-          background: #000;
-          display: flex;
-          align-items: center;
-          padding: 0 12px;
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 20px;
-          letter-spacing: 1px;
-          color: #fff;
-          flex-shrink: 0;
-          border-radius: 6px;
-          margin-right: 4px;
-          user-select: none;
-        }
+        .sc-spotify-container { position: fixed; top: 140px; right: 20px; width: 32vw; display: flex; flex-direction: column; gap: 15px; z-index: 50; }
+        .sc-spotify-wrapper { border: 2px solid #111; border-radius: 12px; overflow: hidden; background: #000; animation: sc-infobar-in 0.4s forwards; }
+        .sc-spotify-wrapper.selected { border-color: #c4001a; box-shadow: 0 0 15px rgba(196, 0, 26, 0.4); transform: translateX(-10px) scale(1.02); }
 
-        .sc-info-bar-icon {
-          height: 55%;
-          width: auto;
-          flex-shrink: 0;
-          margin-left: 14px;
-          object-fit: contain;
-          pointer-events: none;
-          user-select: none;
+        .sc-anilist-panel {
+          position: fixed; top: 120px; right: 20px; width: 38vw; background: rgba(0,0,0,0.94);
+          border-left: 4px solid #3db4f2; padding: 20px; display: flex; flex-direction: column; gap: 15px; z-index: 50;
+          animation: sc-infobar-in 0.4s forwards;
         }
+        .sc-ani-label { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; color: #3db4f2; margin-bottom: 10px; text-align: center; background: rgba(61, 180, 242, 0.1); padding: 4px; }
+        .sc-ani-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); gap: 8px; margin-bottom: 10px; }
+        .sc-ani-card { position: relative; aspect-ratio: 2/3; background: #111; border: 1px solid #333; overflow: hidden; }
+        .sc-ani-title-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.8); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 8px; padding: 2px; text-align: center; opacity: 0; transition: opacity 0.2s; }
+        .sc-ani-card:hover .sc-ani-title-overlay { opacity: 1; }
 
-        .sc-info-bar-count {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 22px;
-          letter-spacing: 1px;
-          color: #111;
-          margin-right: 80px;
-          flex-shrink: 0;
-          user-select: none;
-        }
+        .sc-ani-stats { display: flex; gap: 10px; margin-top: 5px; }
+        .sc-ani-stat-box { flex: 1; background: #3db4f2; padding: 10px; display: flex; flex-direction: column; align-items: center; clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
+        .sc-ani-stat-box.red { background: #c4001a; }
+        .sc-ani-stat-val { font-family: 'Anton', sans-serif; font-size: 28px; color: #000; line-height: 1; }
+        .sc-ani-stat-lbl { font-family: 'Bebas Neue', sans-serif; font-size: 11px; color: rgba(0,0,0,0.7); }
 
-        /* footer hints */
-        .sc-footer {
-          position: fixed;
-          bottom: 20px; right: 28px;
-          display: flex; flex-direction: column;
-          align-items: flex-end; gap: 5px;
-          font-family: 'Bebas Neue', sans-serif;
-          z-index: 50;
-          opacity: 0;
-          transition: opacity 0.4s ease 0.6s;
+        .sc-fav-panel {
+          position: fixed; top: 140px; right: 20px; width: 35vw; background: rgba(0,0,0,0.92);
+          border-top: 4px solid #c4001a; padding: 20px; z-index: 50; animation: sc-infobar-in 0.4s forwards;
         }
+        .sc-fav-label { display: block; font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 3px; color: #fff; margin-bottom: 15px; text-align: center; background: #c4001a; padding: 4px; }
+        .sc-fav-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; }
+        .sc-fav-card { position: relative; aspect-ratio: 2/3; background: #111; border: 1px solid #333; overflow: hidden; transition: transform 0.2s; }
+        .sc-fav-card:hover .sc-fav-title { opacity: 1; }
+        .sc-fav-title { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.85); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 10px; padding: 4px; text-align: center; opacity: 0; transition: opacity 0.2s; }
+
+        .img-fade-wrap { position: relative; width: 100%; height: 100%; background: #111; }
+        .img-placeholder { position: absolute; inset: 0; background: linear-gradient(45deg, #111 25%, #1a1a1a 50%, #111 75%); background-size: 200% 200%; animation: shimmer 1.5s infinite linear; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        
+        .sc-fav-card img, .sc-ani-card img { width: 100%; height: 100%; object-fit: cover; position: relative; z-index: 1; }
+
+        .sc-footer { position: fixed; bottom: 20px; right: 28px; display: flex; flex-direction: column; align-items: flex-end; gap: 5px; font-family: 'Bebas Neue', sans-serif; z-index: 50; opacity: 0; transition: opacity 0.4s ease 0.6s; }
         .sc-footer.mounted { opacity: 1; }
-        .sc-footer-row {
-          display: flex; align-items: center; gap: 8px;
-          font-size: 13px; letter-spacing: 2px;
-          color: rgba(255,255,255,0.22);
-        }
-        .sc-footer-key {
-          border: 1px solid rgba(255,255,255,0.15);
-          border-radius: 3px;
-          padding: 1px 6px; font-size: 11px;
-        }
+        .sc-footer-row { display: flex; align-items: center; gap: 8px; font-size: 13px; letter-spacing: 2px; color: rgba(255,255,255,0.28); }
+        .sc-footer-key { border: 1px solid rgba(255,255,255,0.2); border-radius: 3px; padding: 1px 6px; font-size: 11px; }
+
+        @keyframes sc-infobar-in { 0% { opacity: 0; transform: translateX(40px); } 100% { opacity: 1; transform: translateX(0); } }
+        @keyframes sc-right-nav-pop { 0% { opacity: 0; transform: scale(0.55) translateY(-10px); } 65% { opacity: 1; transform: scale(1.1) translateY(2px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
       `}</style>
 
       <div className="sc-root" role="navigation">
@@ -523,9 +370,9 @@ export default function Socials() {
             className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
             onClick={() => {
               if (active === i) window.open(item.href, "_blank");
-              else setActive(i);
+              else { setActive(i); setFocus("left"); }
             }}
-            onMouseEnter={() => setActive(i)}
+            onMouseEnter={() => { setActive(i); setFocus("left"); }}
           >
             <div className="sc-bar-red" />
             <div className="sc-bar">
@@ -547,10 +394,6 @@ export default function Socials() {
                         <span className="sc-stat-tag" style={{ color: s.color, borderColor: s.color }}>{s.tag}</span>
                         <span className="sc-stat-num">{s.value}</span>
                       </div>
-                      <div className="sc-stat-bars">
-                        <div className="sc-stat-bar-color" style={{ background: s.color }} />
-                        <div className="sc-stat-bar-black" />
-                      </div>
                     </div>
                   ))}
                 </div>
@@ -562,37 +405,16 @@ export default function Socials() {
 
       {mounted && (
         <div className="sc-right-nav" key={active}>
-          <span className="sc-nav-arrow left">◄</span>
-          <span className="sc-nav-btn">LB</span>
           <span className="sc-nav-label">{ITEMS[active].label}</span>
-          <span className="sc-nav-btn">RB</span>
-          <span className="sc-nav-arrow right">►</span>
         </div>
       )}
 
-      {mounted && Array.from({ length: ITEMS[active].bars }).map((_, i) => (
-        <div
-          className={`sc-info-bar-wrap${activeInfoBar === i ? " selected" : ""}`}
-          key={`bar-${active}-${i}`}
-          style={{ top: `${155 + i * 52}px`, animationDelay: `${i * 50}ms` }}
-          onClick={() => setActiveInfoBar(i)}
-          onMouseEnter={() => setActiveInfoBar(i)}
-        >
-          {ITEMS[active].newBars.includes(i) && (
-            <img className="sc-info-bar-new" src={newsign} alt="" />
-          )}
-          <div className="sc-info-bar">
-            <img className="sc-info-bar-icon" src={ITEMS[active].barIcon} alt="" />
-            <span className="sc-info-bar-text">{ITEMS[active].links[i].slice(0, 10)}...</span>
-            <span className="sc-info-bar-box">VIEWS</span>
-            <span className="sc-info-bar-count">{ITEMS[active].counts[i]}</span>
-          </div>
-        </div>
-      ))}
+      {renderRightPanel()}
 
       <div className={`sc-footer${mounted ? " mounted" : ""}`}>
         <div className="sc-footer-row"><span className="sc-footer-key">↑↓</span><span>SELECT</span></div>
-        <div className="sc-footer-row"><span className="sc-footer-key">↵</span><span>OPEN</span></div>
+        <div className="sc-footer-row"><span className="sc-footer-key">→</span><span>VIEW DATA</span></div>
+        <div className="sc-footer-row"><span className="sc-footer-key">↵</span><span>OPEN LINK</span></div>
         <div className="sc-footer-row"><span className="sc-footer-key">ESC</span><span>BACK</span></div>
       </div>
     </div>
